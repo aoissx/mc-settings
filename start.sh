@@ -14,11 +14,11 @@
 # You can change these variables.
 #*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 # project name: paper, velocity
-PROJECT_NAME="velocity"
+PROJECT_NAME="paper"
 
 # project version
 # if you want to use the latest version, set "latest"
-VERSION="latest"
+VERSION="1.20.2"
 
 # server memory
 # if you want to use the default memory, set "default"
