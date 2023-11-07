@@ -60,7 +60,7 @@ require(){
 # Download project
 #------------------------------
 download(){
-    info "THIS PROJECT is ${PROJECT_NAME}."
+    info "This project is ${PROJECT_NAME}."
 
     # version check
     if [ "${VERSION}" = "latest" ]; then
