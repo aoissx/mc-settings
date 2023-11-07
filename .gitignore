@@ -1,0 +1,10 @@
+*.log
+
+# file
+!start.sh
+!README.md
+!.gitignore
+
+# dir
+!.github/
+!.devcontainer
