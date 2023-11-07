@@ -9,6 +9,7 @@
 
 # config
 !server.properties
+!ops.json
 
 # dir
 !.github/
