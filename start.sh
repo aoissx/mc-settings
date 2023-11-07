@@ -102,7 +102,7 @@ timestamp(){
 #------------------------------
 require(){
     sudo apt update
-    sudo apt install -y openjdk-17-jdk curl screen jq fonts-noto-cjk
+    sudo apt install -y openjdk-17-jdk curl screen jq fonts-noto-cjk git
 }
 
 #------------------------------
