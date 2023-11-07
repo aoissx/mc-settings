@@ -8,3 +8,6 @@ for file in $ignored_files
 do
     rm -rf $file
 done
+
+# 空のディレクトリを削除
+find . -type d -empty -delete
