@@ -13,8 +13,8 @@
 #*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 # You can change these variables.
 #*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-# project name: paper, waterfall, velocity
-PROJECT_NAME="paper"
+# project name: paper, velocity
+PROJECT_NAME="velocity"
 
 # project version
 # if you want to use the latest version, set "latest"
