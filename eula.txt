@@ -1,1 +1,1 @@
-rula=true
+eula=true
