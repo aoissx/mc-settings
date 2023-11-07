@@ -10,6 +10,8 @@
 # config
 !server.properties
 !ops.json
+!config/
+!config/paper-global.yml
 
 # dir
 !.github/
