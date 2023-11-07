@@ -7,6 +7,9 @@
 !.gitignore
 !eula.txt
 
+# config
+!server.properties
+
 # dir
 !.github/
 !.devcontainer
