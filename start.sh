@@ -185,6 +185,18 @@ stop-server(){
     fi
 
     screen -S ${SCREEN_NAME} -p 0 -X stuff "${STOP_COMMAND}\n"
+
+    # wait
+    while true;
+    do
+        info "Waiting for server to stop..."
+        timestamp
+        if [ $(screen -ls | grep ${SCREEN_NAME} | wc -l) -eq 0 ]; then
+            break
+        fi
+        sleep 10
+    done
+
     info "Server stopped."
 
 }
