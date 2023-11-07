@@ -1,0 +1,12 @@
+*
+
+# file
+!start.sh
+!reset.sh
+!README.md
+!.gitignore
+!eula.txt
+
+# dir
+!.github/
+!.devcontainer
