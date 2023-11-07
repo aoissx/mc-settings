@@ -15,7 +15,7 @@ PROJECT_NAME="paper"
 
 # project version
 # if you want to use the latest version, set "latest"
-VERSION="1.16.5"
+VERSION="latest"
 
 # project url
 URL="https://papermc.io/api/v2/projects/${PROJECT_NAME}"
@@ -23,6 +23,9 @@ URL="https://papermc.io/api/v2/projects/${PROJECT_NAME}"
 # log
 SERVER_LOG=".mc.log"
 SCRIPT_LOG=".script.log"
+
+# file
+SERVER_FILE="server.jar"
 
 #------------------------------------------------------------------------------------------
 # FUNCTIONS
@@ -56,14 +59,42 @@ require(){
 #------------------------------
 # Download project
 #------------------------------
+download(){
+    info "THIS PROJECT is ${PROJECT_NAME}."
+
+    # version check
+    if [ "${VERSION}" = "latest" ]; then
+        info "> Get latest version..."
+        VERSION=$(curl -s ${URL} | jq -r '.versions[-1]')
+    fi
+
+    info "Version is ${VERSION}."
+
+    # latest build number
+    info "> Get latest build number..."
+    BUILD=$(curl -s ${URL}/versions/${VERSION} | jq -r '.builds[-1]')
+    info "Build is ${BUILD}."
+
+    # download
+    info "> Downloading..."
+    JAR_NAME="${PROJECT_NAME}-${VERSION}-${BUILD}.jar"
+    curl -s -o ${SERVER_FILE} ${URL}/versions/${VERSION}/builds/${BUILD}/downloads/${JAR_NAME}
+
+    info "> Download complete."
+}
 
 #------------------------------------------------------------------------------------------
 # MAIN
 #------------------------------------------------------------------------------------------
 main(){
+    clear
     # check requirements
     info "Checking requirements..."
     require > ${SCRIPT_LOG} 2>&1
+
+    # download server jar
+    info "Download server..."
+    download
 }
 
 #------------------------------------------------------------------------------------------
