@@ -62,6 +62,10 @@ CURRENT_DIRECTORY=$(cd $(dirname $0); pwd)
 # this file
 SCRIPT_FILE=$(basename $0)
 
+# plugin
+PLUGIN_DIRECTORY="plugins"
+PLUGIN_JSON="_plugin.json"
+
 #------------------------------------------------------------------------------------------
 # FUNCTIONS
 #------------------------------------------------------------------------------------------
@@ -142,6 +146,39 @@ download(){
 }
 
 #------------------------------
+# Plugin
+#------------------------------
+process_plugins() {
+    local json_file=$PLUGIN_JSON
+    local plugin_count=$(jq '.plugins | length' "$json_file")
+
+    for ((i = 0; i < plugin_count; i++)); do
+        local name=$(jq -r ".plugins[$i].name" "$json_file")
+        local url=$(jq -r ".plugins[$i].url" "$json_file")
+        
+        download_plugin "$name" "$url"
+    done
+}
+
+download_plugin() {
+    local name=$1
+    local url=$2
+    local download_folder="plugins"
+
+    if [ -n "$url" ]; then
+        # ダウンロード先のファイル名を生成
+        local filename="${download_folder}/${name}_$(basename "$url")"
+
+        # URLからダウンロード
+        curl -o "$filename" "$url"
+
+        echo "プラグイン '$name' をダウンロードしました。保存先: $filename"
+    else
+        echo "プラグイン '$name' のURLが設定されていません。スキップします。"
+    fi
+}
+
+#------------------------------
 # Exist server
 #------------------------------
 exist-screen(){
@@ -160,6 +197,9 @@ start-server(){
 
     # download
     download
+
+    # plugin
+    process_plugins
 
     info "Server starting..."
 
